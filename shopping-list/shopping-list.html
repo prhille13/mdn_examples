@@ -1,0 +1,93 @@
+<!--
+   shopping-list.html
+   
+   Copyright 2023  <ptr@raspberrypi>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+       //variables to store existing elements
+       const list = document.querySelector("ul");
+       const input = document.querySelector("input");
+       const button = document.querySelector("button");
+       //function to add listItem to list when button is clicked
+       button.addEventListener("click", () => {
+          //create a variable to store current input item
+	  const myItem = input.value;
+	  //reset the input to an empty string
+	  input.value = "";
+	  
+	  //variables to hold created elements
+	  const listItem = document.createElement("li");
+	  const listText = document.createElement("span");
+	  const listBtn = document.createElement("button");
+	  
+	  //append listText to listItem
+	  listItem.appendChild(listText);
+	  //set listText to current input
+	  listText.textContent = myItem;
+	  //append listBtn to listItem
+	  listItem.appendChild(listBtn);
+	  //set listBtn text to "Delete"
+	  listBtn.textContent = "Delete";
+	  //append listItem to list
+	  list.appendChild(listItem);
+	  //functin to delete listItem when button is clicked
+	  listBtn.addEventListener("click", () => {
+	    list.removeChild(listItem);
+	  });
+	  //after listItem is created, focus on input element
+	  input.focus();
+       });
+
+    </script>
+  </body>
+</html>
